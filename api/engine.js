@@ -2,7 +2,7 @@ import { S3Client, GetObjectCommand } from "@aws-sdk/client-s3";
 import { getSignedUrl } from "@aws-sdk/s3-request-presigner";
 
 const MODEL_DB = {
-  "SBRV2": "GLB1-v6.glb",
+  "SBRV2": "SBR-v2.glb",
   "GLB1-v6": "GLB1-v6.glb",
   "GLB2-v7": "GLB2-v7.glb",
   "GLB3-v8": "GLB3-v8.glb",
