@@ -19,14 +19,14 @@ async function init() {
 
   try {
     // 1. Sadece Modeli Çekiyoruz
-    const modelRes = await fetch(`/api/engine?sku=${sku}`);
+    const modelRes = await fetch(`/api/engine1?sku=${sku}`);
     if (!modelRes.ok) throw new Error("Product not found.");
     const modelData = await modelRes.json();
     
     /* HDR GEÇİCİ OLARAK İPTAL EDİLDİ
        Çünkü siteyi çökertiyor. Önce modelin ölçeğini görelim.*/
     
-    const envRes = await fetch(`/api/engine?type=env`);
+    const envRes = await fetch(`/api/engine1?type=env`);
     const envData = await envRes.json();
     
 
