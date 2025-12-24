@@ -1,5 +1,5 @@
 {
-  "name": "plansmith-secure-ar",
+  "name": "kuzeylife-secure-ar",
   "version": "2.0.0",
   "dependencies": {
     "@aws-sdk/client-s3": "^3.400.0",
