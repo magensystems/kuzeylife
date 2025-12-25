@@ -54,9 +54,8 @@ const MODEL_DB = {
 };
 
 // Varsayılan HDR Sahnesi
-//const DEFAULT_ENV = "environments/studio_lite.hdr";
+const DEFAULT_ENV = "environments/studio_lite.hdr";
 
-const DEFAULT_ENV = "https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k.hdr";
 
 const client = new S3Client({
   region: "auto",
@@ -89,10 +88,18 @@ export default async function handler(req, res) {
       return res.status(404).json({ ok: false, error: "Model Not Found" });
     }
 
+    //const command = new GetObjectCommand({
+    //  Bucket: process.env.R2_BUCKET,
+    //  Key: MODEL_DB[sku],
+   // });
+
     const command = new GetObjectCommand({
-      Bucket: process.env.R2_BUCKET,
-      Key: MODEL_DB[sku],
-    });
+  Bucket: process.env.R2_BUCKET,
+  Key: objectKey,
+  // 👇 SİHİRLİ SATIR BURASI:
+  // R2'daki ayar ne olursa olsun, tarayıcıya "Bu bir binary dosyadır" de.
+  ResponseContentType: 'binary/octet-stream' 
+});
 
     const signedUrl = await getSignedUrl(client, command, { expiresIn: 3600 });
 
