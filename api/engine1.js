@@ -93,11 +93,13 @@ export default async function handler(req, res) {
     //  Key: MODEL_DB[sku],
    // });
 
-    const command = new GetObjectCommand({
-      Bucket: process.env.R2_BUCKET,
-      Key: MODEL_DB[sku], // <--- DOĞRUSU BU (Listenizden dosya adını çeker)
-      ResponseContentType: 'binary/octet-stream'
-    });
+    // const command = new GetObjectCommand({
+      //Bucket: process.env.R2_BUCKET,
+     // Key: MODEL_DB[sku], // <--- DOĞRUSU BU (Listenizden dosya adını çeker)
+     // ResponseContentType: 'binary/octet-stream'
+   // });
+
+    const DEFAULT_ENV = "https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k.hdr";
 
    
 
