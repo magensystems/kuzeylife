@@ -94,12 +94,12 @@ export default async function handler(req, res) {
    // });
 
     const command = new GetObjectCommand({
-  Bucket: process.env.R2_BUCKET,
-  Key: objectKey,
-  // 👇 SİHİRLİ SATIR BURASI:
-  // R2'daki ayar ne olursa olsun, tarayıcıya "Bu bir binary dosyadır" de.
-  ResponseContentType: 'binary/octet-stream' 
-});
+      Bucket: process.env.R2_BUCKET,
+      Key: MODEL_DB[sku], // <--- DOĞRUSU BU (Listenizden dosya adını çeker)
+      ResponseContentType: 'binary/octet-stream'
+    });
+
+   
 
     const signedUrl = await getSignedUrl(client, command, { expiresIn: 3600 });
 
