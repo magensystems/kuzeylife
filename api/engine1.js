@@ -54,7 +54,7 @@ const MODEL_DB = {
 };
 
 // Varsayılan HDR Sahnesi
-const DEFAULT_ENV = "environments/studio_lite.hdr";
+const DEFAULT_ENV = "environments/studio.hdr";
 
 
 const client = new S3Client({
