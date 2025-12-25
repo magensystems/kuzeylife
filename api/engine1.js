@@ -54,7 +54,8 @@ const MODEL_DB = {
 };
 
 // Varsayılan HDR Sahnesi
-const DEFAULT_ENV = "environments/studio_lite.hdr";
+//const DEFAULT_ENV = "environments/studio_lite.hdr";
+const DEFAULT_ENV = "https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k.hdr";
 
 
 const client = new S3Client({
@@ -88,7 +89,7 @@ export default async function handler(req, res) {
       return res.status(404).json({ ok: false, error: "Model Not Found" });
     }
 
-    //const command = new GetObjectCommand({
+   // const command = new GetObjectCommand({
     //  Bucket: process.env.R2_BUCKET,
     //  Key: MODEL_DB[sku],
    // });
@@ -99,7 +100,6 @@ export default async function handler(req, res) {
      // ResponseContentType: 'binary/octet-stream'
    // });
 
-    const DEFAULT_ENV = "https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k.hdr";
 
    
 
