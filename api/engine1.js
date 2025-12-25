@@ -54,7 +54,9 @@ const MODEL_DB = {
 };
 
 // Varsayılan HDR Sahnesi
-const DEFAULT_ENV = "environments/studio_lite.hdr";
+//const DEFAULT_ENV = "environments/studio_lite.hdr";
+
+const DEFAULT_ENV = "https://modelviewer.dev/shared-assets/environments/spruit_sunrise_1k.hdr";
 
 const client = new S3Client({
   region: "auto",
