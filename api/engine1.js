@@ -46,16 +46,10 @@ const MODEL_DB = {
   "GLBS11": "GLBS11.glb",
   "GLBS12": "GLBS12.glb",
   "GLBS13": "GLBS13.glb"
-
-
-
-
-  // Diğer modellerin...
 };
 
-// Varsayılan HDR Sahnesi
+// Bu satır artık kullanılmıyor ama hata vermemesi için kalsın:
 const DEFAULT_ENV = "environments/studio.hdr";
-
 
 const client = new S3Client({
   region: "auto",
@@ -68,19 +62,19 @@ const client = new S3Client({
 
 export default async function handler(req, res) {
   try {
-    const url = new URL(req.url, `https://${req.headers.host}`);
+    // URL oluşturma güvenliği (host header kontrolü)
+    const protocol = req.headers['x-forwarded-proto'] || 'https';
+    const host = req.headers.host;
+    const url = new URL(req.url, `${protocol}://${host}`);
+    
     const sku = url.searchParams.get("sku")?.toUpperCase();
     const type = url.searchParams.get("type"); // 'env' isteği için
 
-    // A. ORTAM (HDR) İSTEĞİ
+    // A. ORTAM (HDR) İSTEĞİ - GÜNCELLENDİ 🚀
     if (type === 'env') {
-      const command = new GetObjectCommand({
-        Bucket: process.env.R2_BUCKET,
-        Key: DEFAULT_ENV
-      });
-      // HDR dosyaları büyük olabilir, link 1 saat geçerli olsun
-      const signedUrl = await getSignedUrl(client, command, { expiresIn: 3600 });
-      return res.status(200).json({ ok: true, url: signedUrl });
+       // R2'ye gitme, direkt proje içindeki dosyayı ver.
+       // "studio_lite.hdr" dosyasının proje ana dizininde (index.html yanında) olduğundan emin ol.
+       return res.status(200).json({ ok: true, url: "/studio_lite.hdr" });
     }
 
     // B. MODEL İSTEĞİ
@@ -88,19 +82,12 @@ export default async function handler(req, res) {
       return res.status(404).json({ ok: false, error: "Model Not Found" });
     }
 
-   // const command = new GetObjectCommand({
-    //  Bucket: process.env.R2_BUCKET,
-    //  Key: MODEL_DB[sku],
-   // });
-
     const command = new GetObjectCommand({
       Bucket: process.env.R2_BUCKET,
-      Key: MODEL_DB[sku], // <--- DOĞRUSU BU (Listenizden dosya adını çeker)
+      Key: MODEL_DB[sku], 
+      // Modeller için binary zorlaması devam ediyor (Doğrusu bu):
       ResponseContentType: 'binary/octet-stream'
     });
-
-
-   
 
     const signedUrl = await getSignedUrl(client, command, { expiresIn: 3600 });
 
@@ -111,5 +98,3 @@ export default async function handler(req, res) {
     return res.status(500).json({ ok: false, error: error.message });
   }
 }
-
-// Versiyon kontrol: v1.1
