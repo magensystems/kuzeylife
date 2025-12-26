@@ -74,7 +74,7 @@ export default async function handler(req, res) {
     if (type === 'env') {
        // R2'ye gitme, direkt proje içindeki dosyayı ver.
        // "studio_lite.hdr" dosyasının proje ana dizininde (index.html yanında) olduğundan emin ol.
-       return res.status(200).json({ ok: true, url: "environments/studio.hdr" });
+       return res.status(200).json({ ok: true, url: "/studio.hdr" });
     }
 
     // B. MODEL İSTEĞİ
