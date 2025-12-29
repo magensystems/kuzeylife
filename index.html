@@ -16,19 +16,19 @@
     <div id="error-toast"></div>
 
     <model-viewer id="mv"
-      ar
-      ar-modes="webxr scene-viewer quick-look"
-      ar-scale="fixed"
-      ar-placement="floor"
+
+      ar 
+      ar-modes="webxr scene-viewer quick-look" 
       camera-controls
-      disable-zoom 
-      interaction-prompt="none"
+      disable-zoom
+      ar-scale="fixed"
+      tone-mapping="aces" 
+      poster="poster.webp" 
       shadow-intensity="0.1"
       autoplay
-      exposure="2"
-      tone-mapping="aces"
-      loading="eager"
-      poster="/poster.webp">
+      exposure="2">
+
+      >
 
       <button slot="ar-button" id="ar-btn" style="display: none;">
         Modeli görüntüleyin
