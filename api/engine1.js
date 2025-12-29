@@ -51,20 +51,6 @@ const MODEL_DB = {
 // Bu satır artık kullanılmıyor ama hata vermemesi için kalsın:
 const DEFAULT_ENV = "environments/studio.hdr";
 
-const modelViewer = document.querySelector("#mv");
-
-// Basit Chrome tespiti (Google Inc. vendor kontrolü ve iOS olmaması)
-// Not: iOS üzerindeki Chrome aslında Safari (WebKit) motorunu kullanır, bu yüzden onu hariç tutmak isteyebilirsin.
-const isChrome = /Chrome/.test(navigator.userAgent) && /Google Inc/.test(navigator.vendor) && !/iPhone|iPad|iPod/.test(navigator.userAgent);
-
-if (isChrome) {
-    modelViewer.exposure = 1; // Chrome (Desktop/Android) için
-    console.log("Tarayıcı Chrome algılandı. Exposure: 1");
-} else {
-    modelViewer.exposure = 2; // Safari, Firefox ve diğerleri için
-    console.log("Diğer tarayıcı algılandı. Exposure: 2");
-}
-
 const client = new S3Client({
   region: "auto",
   endpoint: `https://${process.env.R2_ACCOUNT_ID}.r2.cloudflarestorage.com`,
