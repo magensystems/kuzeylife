@@ -158,7 +158,7 @@ model-viewer {
     position: absolute; /* Kapsayıcıya göre konumlan */
     
     /* Butonun (60px) güvenli bir mesafe üzerine: */
-    bottom: 110px; 
+    bottom: 105px; 
     
     left: 50%;
     transform: translateX(-50%);
