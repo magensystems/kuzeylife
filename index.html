@@ -30,19 +30,21 @@
       environment-image="studio.hdr" exposure="1">
 
       >
-      <div id="interaction-hint" slot="interaction-prompt">
-  <div class="hand-icon">👋</div>
-  <div class="hint-text">
-    <span>Döndürmek için sürükle</span>
-    <span>Taşımak için iki parmak</span>
-  </div>
-</div>
+     
 
       <button slot="ar-button" id="ar-btn" style="display: none;">
         Modeli görüntüleyin
       </button>
 
     </model-viewer>
+
+     <div id="interaction-hint" slot="interaction-prompt">
+  <div class="hand-icon">👋</div>
+  <div class="hint-text">
+    <span>Döndürmek için sürükle</span>
+    <span>Taşımak için iki parmak</span>
+  </div>
+</div>
 
     <script type="module" src="https://ajax.googleapis.com/ajax/libs/model-viewer/4.0.0/model-viewer.min.js"></script>
     <script type="module" src="/app.js"></script>
